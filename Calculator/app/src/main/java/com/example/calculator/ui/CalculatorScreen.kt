@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun CalculatorScreen(text: String){
+fun CalculatorScreen(text: String) {
     Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.End) {
         Text(
             text = text,

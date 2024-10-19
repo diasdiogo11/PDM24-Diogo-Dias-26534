@@ -1,7 +1,6 @@
 package com.example.calculator
 
-import android.inputmethodservice.ExtractEditText
-import android.inputmethodservice.Keyboard
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -40,7 +39,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.calculator.ui.theme.CalculatorTheme
 import androidx.compose.runtime.*
+import com.example.calculator.models.CalculatorBrain
 import com.example.calculator.ui.CalculatorBody
+import com.example.calculator.ui.CalculatorKeyboard
+import com.example.calculator.ui.CalculatorScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,18 +57,19 @@ class MainActivity : ComponentActivity() {
                     verticalArrangement = Arrangement.Bottom,
                     horizontalAlignment = Alignment.End
                 ) {
-                    Spacer(modifier = Modifier.height(5.dp))
                     CalculatorBody()
+
                 }
 
             }
         }
     }
+
 }
 
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    CalculatorTheme { }
+    CalculatorTheme {}
 }

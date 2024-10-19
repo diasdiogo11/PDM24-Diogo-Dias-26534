@@ -7,14 +7,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableDoubleStateOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
+import com.example.calculator.models.CalculatorBrain
 
 @Composable
 fun CalculatorKeyboard(){
@@ -59,15 +56,15 @@ fun CalculatorKeyboard(){
         Spacer(modifier = Modifier.height(5.dp))
         Row {
             Column(Modifier.weight(1f)) {
-                CalculatorButton("7", Color.Gray) {}
+                CalculatorButton("7", Color.Gray) { CalculatorBrain.enterNumber("7")}
             }
             Spacer(modifier = Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("8", Color.Gray) { }
+                CalculatorButton("8", Color.Gray) { CalculatorBrain.enterNumber("8")}
             }
             Spacer(modifier = Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("9", Color.Gray) { }
+                CalculatorButton("9", Color.Gray) {CalculatorBrain.enterNumber("9")}
             }
             Spacer(modifier = Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
@@ -77,15 +74,15 @@ fun CalculatorKeyboard(){
         Spacer(modifier = Modifier.height(5.dp))
         Row {
             Column(Modifier.weight(1f)) {
-                CalculatorButton("4", Color.Gray) { }
+                CalculatorButton("4", Color.Gray) { CalculatorBrain.enterNumber("4")}
             }
             Spacer(modifier = Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("5", Color.Gray) {  }
+                CalculatorButton("5", Color.Gray) {CalculatorBrain.enterNumber("5")  }
             }
             Spacer(modifier = Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("6", Color.Gray) { }
+                CalculatorButton("6", Color.Gray) {CalculatorBrain.enterNumber("6") }
             }
             Spacer(modifier = Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
@@ -95,15 +92,15 @@ fun CalculatorKeyboard(){
         Spacer(modifier = Modifier.height(5.dp))
         Row {
             Column(Modifier.weight(1f)) {
-                CalculatorButton("1", Color.Gray) { }
+                CalculatorButton("1", Color.Gray) {CalculatorBrain.enterNumber("1") }
             }
             Spacer(modifier = Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("2", Color.Gray) { }
+                CalculatorButton("2", Color.Gray) {CalculatorBrain.enterNumber("2")}
             }
             Spacer(modifier = Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("3", Color.Gray) { }
+                CalculatorButton("3", Color.Gray) {CalculatorBrain.enterNumber("3")}
             }
             Spacer(modifier = Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
@@ -113,7 +110,7 @@ fun CalculatorKeyboard(){
         Spacer(modifier = Modifier.height(5.dp))
         Row {
             Column(Modifier.weight(1f)) {
-                CalculatorButton("0", Color.Gray) { }
+                CalculatorButton("0", Color.Gray) {CalculatorBrain.enterNumber("0") }
             }
             Spacer(modifier = Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
