@@ -40,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.calculator.ui.theme.CalculatorTheme
 import androidx.compose.runtime.*
+import com.example.calculator.ui.CalculatorBody
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,7 +56,7 @@ class MainActivity : ComponentActivity() {
                     horizontalAlignment = Alignment.End
                 ) {
                     Spacer(modifier = Modifier.height(5.dp))
-                    CalculatorKeyboard()
+                    CalculatorBody()
                 }
 
             }
@@ -63,154 +64,9 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun CalculatorDisplay(text: String){
-    Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.End) {
-        Text(
-            text = text,
-            fontSize = 60.sp
-        )
-    }
-}
-
-@Composable
-fun CalculatorButton(text: String, color: Color, onClick: () -> Unit, ){
-    Button(
-        onClick  = onClick,
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(topStart = 30.dp))
-            .size(75.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = color),
-    ) {
-        Text(text = text, fontSize = 20.sp, textAlign = TextAlign.Center, fontWeight = FontWeight.Bold)
-    }
-}
-
-@Composable
-fun CalculatorKeyboard(){
-    var displayText by remember { mutableStateOf("0") }
-    var numberOne by remember { mutableStateOf("") }
-    var numberTwo by remember { mutableStateOf("") }
-    Column(modifier = Modifier
-        .fillMaxWidth()
-    ) {
-        CalculatorDisplay(text = displayText)
-        Row {
-            Column(Modifier.weight(1f)) {
-                CalculatorButton("MRC", Color.Black) { }
-            }
-            Spacer(modifier = Modifier.width(5.dp))
-            Column(Modifier.weight(1f)) {
-                CalculatorButton("M-", Color.Black) { }
-            }
-            Spacer(modifier = Modifier.width(5.dp))
-            Column(Modifier.weight(1f)) {
-                CalculatorButton("M+", Color.Black) { }
-            }
-            Spacer(modifier = Modifier.width(5.dp))
-            Column(Modifier.weight(1f)) {
-                CalculatorButton("ON/C", Color.Red) { displayText = "0"}
-            }
-        }
-        Spacer(modifier = Modifier.height(5.dp))
-        Row {
-            Column(Modifier.weight(1f)) {
-                CalculatorButton("√", Color.Black) { }
-            }
-            Spacer(modifier = Modifier.width(5.dp))
-            Column(Modifier.weight(1f)) {
-                CalculatorButton("%", Color.Black) { }
-            }
-            Spacer(modifier = Modifier.width(5.dp))
-            Column(Modifier.weight(1f)) {
-                CalculatorButton("+/-", Color.Black) { }
-            }
-            Spacer(modifier = Modifier.width(5.dp))
-            Column(Modifier.weight(1f)) {
-                CalculatorButton("CE", Color.Red) { }
-            }
-        }
-        Spacer(modifier = Modifier.height(5.dp))
-        Row {
-            Column(Modifier.weight(1f)) {
-                CalculatorButton("7", Color.Gray) {displayText = if (displayText == "0") "7" else displayText + "7"}
-            }
-            Spacer(modifier = Modifier.width(5.dp))
-            Column(Modifier.weight(1f)) {
-                CalculatorButton("8", Color.Gray) {displayText = if (displayText == "0") "8" else displayText + "8" }
-            }
-            Spacer(modifier = Modifier.width(5.dp))
-            Column(Modifier.weight(1f)) {
-                CalculatorButton("9", Color.Gray) {displayText = if (displayText == "0") "9" else displayText + "9" }
-            }
-            Spacer(modifier = Modifier.width(5.dp))
-            Column(Modifier.weight(1f)) {
-                CalculatorButton("÷", Color.Black) { }
-            }
-        }
-        Spacer(modifier = Modifier.height(5.dp))
-        Row {
-            Column(Modifier.weight(1f)) {
-                CalculatorButton("4", Color.Gray) {displayText = if (displayText == "0") "4" else displayText + "4" }
-            }
-            Spacer(modifier = Modifier.width(5.dp))
-            Column(Modifier.weight(1f)) {
-                CalculatorButton("5", Color.Gray) { displayText = if (displayText == "0") "5" else displayText + "5" }
-            }
-            Spacer(modifier = Modifier.width(5.dp))
-            Column(Modifier.weight(1f)) {
-                CalculatorButton("6", Color.Gray) {displayText = if (displayText == "0") "6" else displayText + "6" }
-            }
-            Spacer(modifier = Modifier.width(5.dp))
-            Column(Modifier.weight(1f)) {
-                CalculatorButton("×", Color.Black) { }
-            }
-        }
-        Spacer(modifier = Modifier.height(5.dp))
-        Row {
-            Column(Modifier.weight(1f)) {
-                CalculatorButton("1", Color.Gray) {displayText = if (displayText == "0") "1" else displayText + "1" }
-            }
-            Spacer(modifier = Modifier.width(5.dp))
-            Column(Modifier.weight(1f)) {
-                CalculatorButton("2", Color.Gray) {displayText = if (displayText == "0") "2" else displayText + "2" }
-            }
-            Spacer(modifier = Modifier.width(5.dp))
-            Column(Modifier.weight(1f)) {
-                CalculatorButton("3", Color.Gray) {displayText = if (displayText == "0") "3" else displayText + "3"}
-            }
-            Spacer(modifier = Modifier.width(5.dp))
-            Column(Modifier.weight(1f)) {
-                CalculatorButton("-", Color.Black) { }
-            }
-        }
-        Spacer(modifier = Modifier.height(5.dp))
-        Row {
-            Column(Modifier.weight(1f)) {
-                CalculatorButton("0", Color.Gray) { displayText = if (displayText == "0") "0" else displayText + "0"}
-            }
-            Spacer(modifier = Modifier.width(5.dp))
-            Column(Modifier.weight(1f)) {
-                CalculatorButton(".", Color.Gray) {displayText = if (displayText == "0") "." else displayText + "." }
-            }
-            Spacer(modifier = Modifier.width(5.dp))
-            Column(Modifier.weight(1f)) {
-                CalculatorButton("=", Color.Gray) { }
-            }
-            Spacer(modifier = Modifier.width(5.dp))
-            Column(Modifier.weight(1f)) {
-                CalculatorButton("+", Color.Black) { }
-            }
-        }
-    }
-}
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    CalculatorTheme {
-        CalculatorDisplay("0")
-        CalculatorKeyboard()
-    }
+    CalculatorTheme { }
 }
