@@ -12,9 +12,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import com.example.calculator.models.CalculatorBrain
+import com.example.calculator.viewmodels.CalculatorViewModel
 
 @Composable
-fun CalculatorKeyboard(){
+fun CalculatorKeyboard(viewModel: CalculatorViewModel){
     Column(modifier = Modifier
         .fillMaxWidth()
     ) {
@@ -32,7 +33,7 @@ fun CalculatorKeyboard(){
             }
             Spacer(modifier = Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("ON/C", Color.Red) {}
+                CalculatorButton("ON/C", Color.Red) {viewModel.clearCalculator()}
             }
         }
         Spacer(modifier = Modifier.height(5.dp))
@@ -56,15 +57,15 @@ fun CalculatorKeyboard(){
         Spacer(modifier = Modifier.height(5.dp))
         Row {
             Column(Modifier.weight(1f)) {
-                CalculatorButton("7", Color.Gray) { CalculatorBrain.enterNumber("7")}
+                CalculatorButton("7", Color.Gray) { viewModel.enterNumber("7")}
             }
             Spacer(modifier = Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("8", Color.Gray) { CalculatorBrain.enterNumber("8")}
+                CalculatorButton("8", Color.Gray) { viewModel.enterNumber("8")}
             }
             Spacer(modifier = Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("9", Color.Gray) {CalculatorBrain.enterNumber("9")}
+                CalculatorButton("9", Color.Gray) {viewModel.enterNumber("9")}
             }
             Spacer(modifier = Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
@@ -74,15 +75,15 @@ fun CalculatorKeyboard(){
         Spacer(modifier = Modifier.height(5.dp))
         Row {
             Column(Modifier.weight(1f)) {
-                CalculatorButton("4", Color.Gray) { CalculatorBrain.enterNumber("4")}
+                CalculatorButton("4", Color.Gray) { viewModel.enterNumber("4")}
             }
             Spacer(modifier = Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("5", Color.Gray) {CalculatorBrain.enterNumber("5")  }
+                CalculatorButton("5", Color.Gray) {viewModel.enterNumber("5")  }
             }
             Spacer(modifier = Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("6", Color.Gray) {CalculatorBrain.enterNumber("6") }
+                CalculatorButton("6", Color.Gray) {viewModel.enterNumber("6") }
             }
             Spacer(modifier = Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
@@ -92,15 +93,15 @@ fun CalculatorKeyboard(){
         Spacer(modifier = Modifier.height(5.dp))
         Row {
             Column(Modifier.weight(1f)) {
-                CalculatorButton("1", Color.Gray) {CalculatorBrain.enterNumber("1") }
+                CalculatorButton("1", Color.Gray) {viewModel.enterNumber("1") }
             }
             Spacer(modifier = Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("2", Color.Gray) {CalculatorBrain.enterNumber("2")}
+                CalculatorButton("2", Color.Gray) {viewModel.enterNumber("2")}
             }
             Spacer(modifier = Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("3", Color.Gray) {CalculatorBrain.enterNumber("3")}
+                CalculatorButton("3", Color.Gray) {viewModel.enterNumber("3")}
             }
             Spacer(modifier = Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
@@ -110,7 +111,7 @@ fun CalculatorKeyboard(){
         Spacer(modifier = Modifier.height(5.dp))
         Row {
             Column(Modifier.weight(1f)) {
-                CalculatorButton("0", Color.Gray) {CalculatorBrain.enterNumber("0") }
+                CalculatorButton("0", Color.Gray) {viewModel.enterNumber("0") }
             }
             Spacer(modifier = Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {

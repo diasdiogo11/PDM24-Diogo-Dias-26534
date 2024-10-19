@@ -8,6 +8,8 @@ import com.example.calculator.viewmodels.CalculatorViewModel
 @Composable
 fun CalculatorBody(){
 
+    val viewModel = CalculatorViewModel()
+
     CalculatorScreen(text = CalculatorBrain.currentValue)
-    CalculatorKeyboard()
+    CalculatorKeyboard(viewModel = viewModel)
 }
