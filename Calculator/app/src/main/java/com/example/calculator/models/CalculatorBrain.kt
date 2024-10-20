@@ -24,4 +24,49 @@ object CalculatorBrain {
         currentOperation = null
     }
 
+    fun add() {
+        storedValue = currentValue
+        currentValue = "0"
+        currentOperation = "+"
+
+    }
+
+    fun subtract() {
+        storedValue = currentValue
+        currentValue = "0"
+        currentOperation = "-"
+    }
+
+    fun multiply() {
+        storedValue = currentValue
+        currentValue = "0"
+        currentOperation = "*"
+    }
+
+    fun divide() {
+        storedValue = currentValue
+        currentValue = "0"
+        currentOperation = "/"
+    }
+
+    fun calculate() {
+        if(currentOperation == "+"){
+            val result = (storedValue.toDouble() + currentValue.toDouble()).toString()
+            currentValue = result
+        }
+        if(currentOperation == "-"){
+            val result = (storedValue.toDouble() - currentValue.toDouble()).toString()
+            currentValue = result
+        }
+        if(currentOperation == "*"){
+            val result = (storedValue.toDouble() * currentValue.toDouble()).toString()
+            currentValue = result
+        }
+        if(currentOperation == "/"){
+            val result = (storedValue.toDouble() / currentValue.toDouble()).toString()
+            currentValue = result
+        }
+        currentOperation = null
+    }
+
 }

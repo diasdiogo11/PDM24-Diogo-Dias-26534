@@ -13,4 +13,24 @@ class CalculatorViewModel: ViewModel() {
         CalculatorBrain.clear()
     }
 
+    fun add(){
+        CalculatorBrain.add()
+    }
+
+    fun subtract(){
+        CalculatorBrain.subtract()
+    }
+
+    fun multiply(){
+        CalculatorBrain.multiply()
+    }
+
+    fun divide(){
+        CalculatorBrain.divide()
+    }
+
+    fun calculate(){
+        CalculatorBrain.calculate()
+    }
+
 }
