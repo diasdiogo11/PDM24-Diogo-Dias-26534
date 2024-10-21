@@ -31,19 +31,19 @@ object CalculatorBrain {
 
     }
 
-    fun subtract() {
+    fun sub() {
         storedValue = currentValue
         currentValue = "0"
         currentOperation = "-"
     }
 
-    fun multiply() {
+    fun mult() {
         storedValue = currentValue
         currentValue = "0"
         currentOperation = "*"
     }
 
-    fun divide() {
+    fun div() {
         storedValue = currentValue
         currentValue = "0"
         currentOperation = "/"

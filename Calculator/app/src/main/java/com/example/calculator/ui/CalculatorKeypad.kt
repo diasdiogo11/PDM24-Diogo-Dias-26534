@@ -69,7 +69,7 @@ fun CalculatorKeyboard(viewModel: CalculatorViewModel){
             }
             Spacer(modifier = Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("÷", Color.Black) {viewModel.divide() }
+                CalculatorButton("÷", Color.Black) {viewModel.div() }
             }
         }
         Spacer(modifier = Modifier.height(5.dp))
@@ -87,7 +87,7 @@ fun CalculatorKeyboard(viewModel: CalculatorViewModel){
             }
             Spacer(modifier = Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("×", Color.Black) {viewModel.multiply() }
+                CalculatorButton("×", Color.Black) {viewModel.mult() }
             }
         }
         Spacer(modifier = Modifier.height(5.dp))
@@ -105,7 +105,7 @@ fun CalculatorKeyboard(viewModel: CalculatorViewModel){
             }
             Spacer(modifier = Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("-", Color.Black) {viewModel.subtract() }
+                CalculatorButton("-", Color.Black) {viewModel.sub() }
             }
         }
         Spacer(modifier = Modifier.height(5.dp))

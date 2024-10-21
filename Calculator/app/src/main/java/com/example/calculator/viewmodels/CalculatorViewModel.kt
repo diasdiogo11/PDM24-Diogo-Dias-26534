@@ -17,16 +17,16 @@ class CalculatorViewModel: ViewModel() {
         CalculatorBrain.add()
     }
 
-    fun subtract(){
-        CalculatorBrain.subtract()
+    fun sub(){
+        CalculatorBrain.sub()
     }
 
-    fun multiply(){
-        CalculatorBrain.multiply()
+    fun mult(){
+        CalculatorBrain.mult()
     }
 
-    fun divide(){
-        CalculatorBrain.divide()
+    fun div(){
+        CalculatorBrain.div()
     }
 
     fun calculate(){
