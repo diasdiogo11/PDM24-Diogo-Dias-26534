@@ -21,15 +21,15 @@ fun CalculatorKeyboard(viewModel: CalculatorViewModel){
     ) {
         Row {
             Column(Modifier.weight(1f)) {
-                CalculatorButton("MRC", Color.Black) { }
+                CalculatorButton("MRC", Color.Black) {viewModel.MRC() }
             }
             Spacer(modifier = Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("M-", Color.Black) { }
+                CalculatorButton("M-", Color.Black) { viewModel.Mminus()}
             }
             Spacer(modifier = Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {
-                CalculatorButton("M+", Color.Black) { }
+                CalculatorButton("M+", Color.Black) {viewModel.Mmore() }
             }
             Spacer(modifier = Modifier.width(5.dp))
             Column(Modifier.weight(1f)) {

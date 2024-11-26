@@ -33,4 +33,16 @@ class CalculatorViewModel: ViewModel() {
         CalculatorBrain.calculate()
     }
 
+    fun MRC(){
+        CalculatorBrain.MRC()
+    }
+
+    fun Mminus(){
+        CalculatorBrain.Mminus()
+    }
+
+    fun Mmore(){
+        CalculatorBrain.Mmore()
+    }
+
 }

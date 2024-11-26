@@ -20,7 +20,6 @@ object CalculatorBrain {
 
     fun clear() {
         currentValue = "0"
-        storedValue = "0"
         currentOperation = null
     }
 
@@ -47,6 +46,22 @@ object CalculatorBrain {
         storedValue = currentValue
         currentValue = "0"
         currentOperation = "/"
+    }
+
+    fun MRC(){
+        currentValue = storedValue
+    }
+
+    fun Mminus(){
+        val result = storedValue.toDouble() - currentValue.toDouble()
+        currentValue = result.toString()
+        storedValue = currentValue
+    }
+
+    fun Mmore(){
+        val result = storedValue.toDouble() + currentValue.toDouble()
+        currentValue = result.toString()
+        storedValue = currentValue
     }
 
     fun calculate() {
