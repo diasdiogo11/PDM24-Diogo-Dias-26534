@@ -6,8 +6,8 @@ import com.example.news.domain.model.Result
 import com.example.news.domain.repository.NewsRepository
 
 class NewsRepositoryImpl(private val api: TheNewsApi) : NewsRepository {
-    override suspend fun getNews(): List<Result> {
-        return api.getNews().results.map { it.toNews() }
+    override suspend fun getNewsList(): List<Result> {
+        return api.getNewsList().results.map { it.toNewsList() }
     }
 
     override suspend fun getNewsDetails(newsUri: String): Doc {

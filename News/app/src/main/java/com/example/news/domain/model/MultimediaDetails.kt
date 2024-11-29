@@ -1,5 +1,5 @@
 package com.example.news.domain.model
 
-data class Multimedia(
+data class MultimediaDetails(
     val url: String,
 )

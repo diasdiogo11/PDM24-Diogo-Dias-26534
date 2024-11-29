@@ -9,7 +9,7 @@ data class ResultDto(
     val title: String,
     val uri: String,
 ){
-    fun toNews(): Result{
+    fun toNewsList(): Result{
         return Result(multimedia = multimedia, published_date = published_date, section = section, title = title, uri = uri)
     }
 }

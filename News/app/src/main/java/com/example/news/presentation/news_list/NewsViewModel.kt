@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.news.data.remote.api.RetrofitInstance
 import com.example.news.data.repository.NewsRepositoryImpl
-import com.example.news.domain.model.News
 import com.example.news.domain.model.Result
 import com.example.news.domain.use_case.GetNewsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow

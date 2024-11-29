@@ -1,5 +1,5 @@
 package com.example.news.data.remote.model
 
-data class MultimediaDto(
+data class MultimediaDetailsDto(
     val url: String,
 )
