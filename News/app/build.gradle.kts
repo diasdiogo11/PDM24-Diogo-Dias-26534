@@ -69,4 +69,5 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.gson)
     implementation(libs.lifecycle.viewmodel.compose)
+    implementation("io.coil-kt:coil-compose:2.4.0")
 }
