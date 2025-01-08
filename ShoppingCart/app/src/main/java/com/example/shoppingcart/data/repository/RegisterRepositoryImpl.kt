@@ -39,7 +39,6 @@ class RegisterRepositoryImpl: RegisterRepository {
                 "name" to name,
                 "email" to email
             )
-            Log.e("ID USER REP", id)
             db.set(user).await()
         }
         catch (e: Exception) {

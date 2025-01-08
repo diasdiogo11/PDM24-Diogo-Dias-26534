@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.shoppingcart.ui.presentation.cart.CartScreen
 import com.example.shoppingcart.ui.presentation.home.HomeScreen
 import com.example.shoppingcart.ui.presentation.login.LoginScreen
 import com.example.shoppingcart.ui.presentation.register.RegisterScreen
@@ -31,6 +32,13 @@ fun NavigateApp() {
         ){
                 backStackEntry ->
             HomeScreen(navController = navController, userId = backStackEntry.arguments?.getString("userId"))
+        }
+
+        composable(
+            route = "cart/{userId}",
+            arguments = listOf(navArgument("userId") { type = NavType.StringType })
+        ) { backStackEntry ->
+            CartScreen(navController = navController, userId = backStackEntry.arguments?.getString("userId") ?: "")
         }
     }
 }

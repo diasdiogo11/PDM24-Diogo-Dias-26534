@@ -57,7 +57,7 @@ fun HomeScreen(homeViewModel: HomeViewModel = viewModel(), navController: NavCon
             NavigationBar {
                 NavigationBarItem(
                     selected = true,
-                    onClick = { navController.navigate("cart/$userId") }, // Navega para o carrinho
+                    onClick = { navController.navigate("cart/$userId") },
                     label = { Text("Cart") },
                     icon = { Icon(Icons.Default.ShoppingCart, contentDescription = "Cart") }
                 )
