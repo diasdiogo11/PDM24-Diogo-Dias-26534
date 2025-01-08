@@ -1,6 +1,5 @@
 package com.example.shoppingcart.ui.presentation.home
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,11 +15,13 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
@@ -42,9 +43,15 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil3.compose.AsyncImage
+import com.example.shoppingcart.ui.presentation.cart.CartViewModel
 
 @Composable
-fun HomeScreen(homeViewModel: HomeViewModel = viewModel(), navController: NavController, userId: String?) {
+fun HomeScreen(
+    homeViewModel: HomeViewModel = viewModel(),
+    cartViewModel: CartViewModel = viewModel(), // CartViewModel injetado
+    navController: NavController,
+    userId: String?
+) {
     val productList = homeViewModel.productList.collectAsState()
 
     LaunchedEffect(Unit) {
@@ -117,9 +124,6 @@ fun HomeScreen(homeViewModel: HomeViewModel = viewModel(), navController: NavCon
                                 .fillMaxWidth()
                                 .padding(16.dp)
                         ) {
-
-                            Spacer(modifier = Modifier.width(16.dp))
-
                             productItem.imageUrl?.let {
                                 AsyncImage(
                                     model = it,
@@ -149,6 +153,23 @@ fun HomeScreen(homeViewModel: HomeViewModel = viewModel(), navController: NavCon
                                     color = Color(0xFF757575)
                                 )
                             }
+
+                            // Botão de adicionar com o ícone de '+'
+                            IconButton(
+                                onClick = {
+                                    // Ação para adicionar o produto ao carrinho
+                                    userId?.let {
+                                        cartViewModel.addToCart(it, productItem, 1)
+                                    }
+                                },
+                                modifier = Modifier.align(Alignment.CenterVertically)
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Add,
+                                    contentDescription = "Add to Cart",
+                                    tint = Color(0xFF37474F)
+                                )
+                            }
                         }
                     }
                 }
@@ -156,6 +177,8 @@ fun HomeScreen(homeViewModel: HomeViewModel = viewModel(), navController: NavCon
         }
     }
 }
+
+
 
 
 

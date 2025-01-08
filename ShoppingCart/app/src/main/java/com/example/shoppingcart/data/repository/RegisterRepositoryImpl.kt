@@ -1,6 +1,5 @@
 package com.example.shoppingcart.data.repository
 
-import android.util.Log
 import com.example.shoppingcart.domain.repository.RegisterRepository
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
