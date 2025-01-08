@@ -16,6 +16,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Card
@@ -48,7 +49,7 @@ import com.example.shoppingcart.ui.presentation.cart.CartViewModel
 @Composable
 fun HomeScreen(
     homeViewModel: HomeViewModel = viewModel(),
-    cartViewModel: CartViewModel = viewModel(), // CartViewModel injetado
+    cartViewModel: CartViewModel = viewModel(),
     navController: NavController,
     userId: String?
 ) {
@@ -63,16 +64,16 @@ fun HomeScreen(
         bottomBar = {
             NavigationBar {
                 NavigationBarItem(
-                    selected = true,
+                    selected = false,
                     onClick = { navController.navigate("cart/$userId") },
-                    label = { Text("Cart") },
-                    icon = { Icon(Icons.Default.ShoppingCart, contentDescription = "Cart") }
+                    label = { Text("Carrinho") },
+                    icon = { Icon(Icons.Default.ShoppingCart, contentDescription = "Carrinho") }
                 )
                 NavigationBarItem(
-                    selected = true,
+                    selected = false,
                     onClick = { navController.navigate("login") },
                     label = { Text("Logout") },
-                    icon = { Icon(Icons.Default.Home, contentDescription = "Logout") }
+                    icon = { Icon(Icons.Default.ExitToApp, contentDescription = "Logout") }
                 )
             }
         }
@@ -87,47 +88,50 @@ fun HomeScreen(
                     )
                 )
         ) {
+            // Cabeçalho com o nome do usuário
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
+                horizontalArrangement = Arrangement.Start,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Bem Vindo $userId",
-                    textAlign = TextAlign.Start,
+                    text = "Bem-vindo, $userId",
                     fontSize = 32.sp,
                     fontWeight = FontWeight.Bold,
-                    fontFamily = FontFamily.SansSerif,
-                    color = Color(0xFF37474F)
+                    color = Color(0xFF37474F),
+                    modifier = Modifier.weight(1f)
                 )
             }
 
+            // Lista de produtos
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(horizontal = 16.dp),
+                    .padding(horizontal = 16.dp, vertical = 8.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 items(productList.value) { productItem ->
                     Card(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(120.dp),
-                        elevation = CardDefaults.cardElevation(4.dp),
-                        shape = RoundedCornerShape(8.dp),
+                            .height(120.dp)
+                            .clip(RoundedCornerShape(12.dp)),
+                        elevation = CardDefaults.cardElevation(8.dp),
                         colors = CardDefaults.cardColors(containerColor = Color.White)
                     ) {
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(16.dp)
+                                .padding(16.dp),
+                            verticalAlignment = Alignment.CenterVertically
                         ) {
+                            // Imagem do produto
                             productItem.imageUrl?.let {
                                 AsyncImage(
                                     model = it,
-                                    contentDescription = "Image of ${productItem.name}",
+                                    contentDescription = "Imagem de ${productItem.name}",
                                     modifier = Modifier
                                         .size(80.dp)
                                         .clip(RoundedCornerShape(8.dp)),
@@ -137,6 +141,7 @@ fun HomeScreen(
 
                             Spacer(modifier = Modifier.width(16.dp))
 
+                            // Descrição do produto
                             Column(
                                 modifier = Modifier.weight(1f)
                             ) {
@@ -146,7 +151,7 @@ fun HomeScreen(
                                     fontSize = 18.sp,
                                     color = Color(0xFF37474F)
                                 )
-                                Spacer(modifier = Modifier.height(8.dp))
+                                Spacer(modifier = Modifier.height(4.dp))
                                 Text(
                                     text = "Preço: ${productItem.price}€",
                                     fontSize = 16.sp,
@@ -154,10 +159,9 @@ fun HomeScreen(
                                 )
                             }
 
-                            // Botão de adicionar com o ícone de '+'
+                            // Botão de adicionar ao carrinho
                             IconButton(
                                 onClick = {
-                                    // Ação para adicionar o produto ao carrinho
                                     userId?.let {
                                         cartViewModel.addToCart(it, productItem, 1)
                                     }
@@ -166,7 +170,7 @@ fun HomeScreen(
                             ) {
                                 Icon(
                                     imageVector = Icons.Default.Add,
-                                    contentDescription = "Add to Cart",
+                                    contentDescription = "Adicionar ao Carrinho",
                                     tint = Color(0xFF37474F)
                                 )
                             }
@@ -177,6 +181,7 @@ fun HomeScreen(
         }
     }
 }
+
 
 
 
