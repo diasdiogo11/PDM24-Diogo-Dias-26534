@@ -78,4 +78,23 @@ class CartRepositoryImpl : CartRepository {
             productDoc.set(cartItemData).await()
         }
     }
+
+    override suspend fun removeFromCart(userId: String, productId: String) {
+        val cartCollection = db.document(userId).collection("Cart")
+
+        // Referência do documento do produto a ser removido
+        val productDoc = cartCollection.document(productId)
+
+        // Verifica se o produto existe no carrinho
+        val snapshot = productDoc.get().await()
+
+        if (snapshot.exists()) {
+            // Se o produto existe, remove o item do carrinho
+            productDoc.delete().await()
+        } else {
+            // Caso o produto não exista, podemos opcionalmente lançar um erro ou apenas retornar
+            // Log ou tratar de acordo com a sua lógica de negócio
+            throw Exception("Produto não encontrado no carrinho")
+        }
+    }
 }

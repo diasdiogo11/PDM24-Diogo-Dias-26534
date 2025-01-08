@@ -10,6 +10,10 @@ class CartUseCase(private val cartRepository: CartRepository) {
         return cartRepository.getCart(userId)
     }
     suspend fun addToCart(userId: String, product: Product, quantity: Int) {
-        return cartRepository.addToCart(userId = userId, product = product, quantity  =quantity)
+        return cartRepository.addToCart(userId = userId, product = product, quantity = quantity)
+    }
+
+    suspend fun removeFromCart(userId: String, productId: String) {
+        return cartRepository.removeFromCart(userId = userId, productId = productId)
     }
 }

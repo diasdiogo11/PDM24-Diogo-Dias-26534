@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 
 class RegisterRepositoryImpl: RegisterRepository {
-    override suspend fun register(email: String, password: String) : Flow<Boolean>  = callbackFlow {
+    override suspend fun register(email: String, password: String): Flow<Boolean> = callbackFlow {
         try {
             val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
@@ -26,21 +26,27 @@ class RegisterRepositoryImpl: RegisterRepository {
             close(e)
         }
 
-        awaitClose{
-
-        }
+        awaitClose { }
     }
 
-    override suspend fun createUser(id: String, name: String, email: String){
-        try{
+    override suspend fun createUser(id: String, name: String, email: String) {
+        try {
             val db = Firebase.firestore.collection("Utilizadores").document(id)
+
+            // Dados do usuário
             val user = hashMapOf(
                 "name" to name,
                 "email" to email
             )
             db.set(user).await()
-        }
-        catch (e: Exception) {
+
+            // Criação da coleção Cart, com um documento vazio ou dados iniciais
+            val cartData = hashMapOf(
+                "products" to emptyList<String>(), // Lista vazia de produtos inicialmente
+                "totalPrice" to 0.0 // Preço total do carrinho inicial
+            )
+            db.collection("Cart").document("cartData").set(cartData).await() // Criar a coleção "Cart"
+        } catch (e: Exception) {
             throw e
         }
     }

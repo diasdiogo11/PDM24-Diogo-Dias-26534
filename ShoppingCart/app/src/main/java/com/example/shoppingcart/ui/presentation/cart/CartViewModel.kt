@@ -20,6 +20,9 @@ class CartViewModel : ViewModel() {
     private val _addToCartStatus = MutableStateFlow<Boolean?>(null)
     val addToCartStatus: StateFlow<Boolean?> get() = _addToCartStatus
 
+    private val _removeFromCartStatus = MutableStateFlow<Boolean?>(null)
+    val removeFromCartStatus: StateFlow<Boolean?> get() = _removeFromCartStatus
+
     fun getCart(userId: String) {
         viewModelScope.launch {
             try {
@@ -39,6 +42,18 @@ class CartViewModel : ViewModel() {
                 _addToCartStatus.value = true // Indica sucesso
             } catch (e: Exception) {
                 _addToCartStatus.value = false // Indica falha
+            }
+        }
+    }
+
+    // Função para remover item do carrinho
+    fun removeFromCart(userId: String, productId: String) {
+        viewModelScope.launch {
+            try {
+                cartUseCase.removeFromCart(userId, productId)
+                _removeFromCartStatus.value = true // Indica sucesso
+            } catch (e: Exception) {
+                _removeFromCartStatus.value = false // Indica falha
             }
         }
     }
