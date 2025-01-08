@@ -16,7 +16,7 @@ class RegisterViewModel: ViewModel() {
     private val _registerState = MutableStateFlow(false)
     val registerState: StateFlow<Boolean> get() = _registerState
 
-    fun register(name: String, email: String, password: String) {
+    fun register(name: String, email: String, password: String, isVisible: Boolean) {
         viewModelScope.launch {
             try {
                 if (email.isEmpty() || password.isEmpty()) {
@@ -27,7 +27,8 @@ class RegisterViewModel: ViewModel() {
                             val auth = FirebaseAuth.getInstance()
                             val userId = auth.currentUser?.uid
                             if (userId != null) {
-                                registerUseCase.createUser(id = userId, email = email, name = name)
+                                // Passando o valor de isVisible ao criar o usuário
+                                registerUseCase.createUser(id = userId, email = email, name = name, isVisible = isVisible)
                             }
                             _registerState.value = true
                         } else {
@@ -41,4 +42,5 @@ class RegisterViewModel: ViewModel() {
             }
         }
     }
+
 }

@@ -36,6 +36,7 @@ fun RegisterScreen(registerViewModel: RegisterViewModel = viewModel(), navContro
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var name by remember { mutableStateOf("") }
+    var isVisible by remember { mutableStateOf(true) } // Adicionando o valor isVisible
 
     val isRegistered = registerViewModel.registerState.collectAsState()
 
@@ -97,7 +98,8 @@ fun RegisterScreen(registerViewModel: RegisterViewModel = viewModel(), navContro
         Button(
             onClick = {
                 try {
-                    registerViewModel.register(name = name, email = email, password = password)
+                    // Passando o valor de isVisible para a função register
+                    registerViewModel.register(name = name, email = email, password = password, isVisible = isVisible)
                 } catch (e: Exception) {
                     throw e
                 }

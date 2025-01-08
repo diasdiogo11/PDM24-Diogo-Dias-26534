@@ -8,7 +8,11 @@ class RegisterUseCase(private val repository: RegisterRepository) {
         return repository.register(email = email, password = password)
     }
 
-    suspend fun createUser(id: String, name: String, email: String) {
-        return repository.createUser(id = id, name = name, email = email)
+    suspend fun createUser(id: String, name: String, email: String, isVisible: Boolean) {
+        return repository.createUser(id = id, name = name, email = email, isVisible = isVisible)
+    }
+
+    suspend fun updateVisibility(id: String, isVisible: Boolean) {
+        return repository.updateVisibility(id = id, isVisible = isVisible)
     }
 }

@@ -29,14 +29,15 @@ class RegisterRepositoryImpl: RegisterRepository {
         awaitClose { }
     }
 
-    override suspend fun createUser(id: String, name: String, email: String) {
+    override suspend fun createUser(id: String, name: String, email: String, isVisible: Boolean) {
         try {
             val db = Firebase.firestore.collection("Utilizadores").document(id)
 
-            // Dados do usuário
+            // Dados do usuário, agora com o parâmetro isVisible
             val user = hashMapOf(
                 "name" to name,
-                "email" to email
+                "email" to email,
+                "isVisible" to isVisible // Adicionando o parâmetro isVisible
             )
             db.set(user).await()
 
@@ -50,4 +51,17 @@ class RegisterRepositoryImpl: RegisterRepository {
             throw e
         }
     }
+
+    override suspend fun updateVisibility(id: String, isVisible: Boolean) {
+        try {
+            val db = Firebase.firestore.collection("Utilizadores").document(id)
+
+            // Atualizando apenas o campo "isVisible" no Firestore
+            db.update("isVisible", isVisible).await()
+        } catch (e: Exception) {
+            throw e
+        }
+    }
+
+
 }
